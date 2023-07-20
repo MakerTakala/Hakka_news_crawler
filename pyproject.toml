@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "hakka-news-crawler"
+version = "0.1.0"
+description = ""
+authors = ["Takala <dylan91011028@gmail.com>"]
+readme = "README.md"
+packages = [{include = "hakka_news_crawler"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+numpy = "^1.25.1"
+panda = "^0.3.1"
+pytube = "^15.0.0"
+requests = "^2.31.0"
+selenium = "^4.10.0"
+pandas = "^2.0.3"
+moviepy = "^1.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
