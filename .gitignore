@@ -1,2 +1,4 @@
-/mp3_data/mp3/*
-/mp3_data/mp4/*
+/data/mp3/*
+/data/mp4/*
+/data/description/*
+/data/*.zip
