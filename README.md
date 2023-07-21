@@ -5,6 +5,7 @@ python: 3.10.11
 ## installation
 
 You can use pyenv and venv to create python environment.
+Need to instll ffmpeg first and set the Path.
 Then, `poetry install` to add package
 
 ## usage
