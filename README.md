@@ -17,8 +17,8 @@ Then, `poetry install` to add package
 
 ## Result
 
-`mp4` folder will save the video with only sound.
-`mp3` folder will save the whole audio.
-`description` folder will save the audio which success to cut.
-`train.csv` save the description audio and it text.
+`mp4` folder will save the video with only sound.  
+`mp3` folder will save the whole audio.  
+`description` folder will save the audio which success to cut.  
+`train.csv` save the description audio and it text.  
 `fail.txt` save the vidoe which fail to convert.
