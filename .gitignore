@@ -1,4 +1,9 @@
-/data/mp3/*
-/data/mp4/*
-/data/description/*
-/data/*.zip
+/description_data/mp3/*
+/description_data/mp4/*
+/description_data/description/*
+/description_data/*.zip
+
+/all_data/mp3/*
+/all_data/mp4/*
+/all_data/description/*
+/all_data/*.zip
