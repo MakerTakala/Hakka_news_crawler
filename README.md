@@ -11,7 +11,7 @@ Then, `poetry install` to add package
 ## Usage
 
 1. You can use [Youtube List](https://jolantahuba.github.io/YT-Backup/) to get youtube playlist csv file and name `url.csv`.
-2. Create a folder and set `target_dir`.
+2. Create a folder and set `target_dir` in `descriptioon_crawler.ipynb`.
 3. Set `os.environ["IMAGEIO_FFMPEG_EXE"]` path to your ffmpeg.
 4. Run `descriptioon_crawler.ipynb` to get all mp4 file. (all data crawler is developing)
 
