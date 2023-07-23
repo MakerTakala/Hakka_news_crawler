@@ -17,6 +17,11 @@ moviepy = "^1.0.3"
 ffmpeg = "^1.4"
 imageio = "^2.31.1"
 pydub = "^0.25.1"
+opencv-python = "^4.8.0.74"
+imagehash = "^4.3.1"
+pillow = "^10.0.0"
+pytesseract = "^0.3.10"
+zhon = "^2.0.2"
 
 
 [build-system]

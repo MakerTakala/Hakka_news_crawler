@@ -3,7 +3,8 @@
 /description_data/description/*
 /description_data/*.zip
 
-/all_data/mp3/*
+/all_data/wav/*
 /all_data/mp4/*
-/all_data/description/*
 /all_data/*.zip
+
+/testimage/*
