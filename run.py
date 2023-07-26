@@ -10,7 +10,7 @@ if __name__ == "__main__":
     os.environ["IMAGEIO_FFMPEG_EXE"] = "/opt/homebrew/bin/ffmpeg"
     
 
-    list_url = "https://www.youtube.com/playlist?list=PL96kIIcXJpMtmsQGlsNVqWduASZnh4HnE"
+    list_url = "https://www.youtube.com/playlist?list=PL96kIIcXJpMvasYY-YOVv4ZgmqaDd9e5x"
     target_dir = "/Users/takala/Documents/GitHub/Hakka_news_crawler/all_data"
 
 
@@ -25,4 +25,4 @@ if __name__ == "__main__":
     pool = multiprocessing.Pool(processes=multiprocessing.cpu_count() // 2)
     data = [(idx, video, 5, target_dir) for [idx, video] in enumerate(playlist.videos)]
 
-    pool.starmap(step_task.processing, data)
+    pool.starmap(step_task.processing, data[0:500])

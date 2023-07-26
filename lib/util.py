@@ -13,6 +13,8 @@ def cleartext(text):
 def is_space(text):
     if text == "" or len(text) < 3: 
         return True
+    if text.count("計") > 2 or text.count("于") > 2:
+        return True
     for c in text:
         if text.count(c) > 3:
             return True
