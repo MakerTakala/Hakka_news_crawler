@@ -67,6 +67,7 @@ def get_subtitle(in_path, out_path):
 
 
 def processing(idx, video, video_fps, target_dir):
+    print(idx, video.title, "running")
     tmp_video = target_dir + "/mp4/tmp" + str(idx) + ".mp4"
     mp4_path = target_dir + "/mp4/" + str(idx) + ".mp4"
     wav_path = target_dir + "/wav/" + str(idx) + ".wav"

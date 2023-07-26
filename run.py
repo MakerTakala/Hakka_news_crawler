@@ -1,6 +1,7 @@
 import os
 
 import pytube
+import multiprocessing
 
 import lib.step_task as step_task
 
@@ -11,7 +12,7 @@ if __name__ == "__main__":
 
     list_url = "https://www.youtube.com/playlist?list=PL96kIIcXJpMtmsQGlsNVqWduASZnh4HnE"
     target_dir = "/Users/takala/Documents/GitHub/Hakka_news_crawler/all_data"
-    
+
 
     if not os.path.isdir(target_dir + "/mp4"):
         os.makedirs(target_dir + "/mp4")
@@ -21,11 +22,7 @@ if __name__ == "__main__":
         os.makedirs(target_dir + "/txt")
 
     playlist = pytube.Playlist(list_url)
-    
-    print("start")
-    for [idx, video] in enumerate(playlist.videos):
-        print(idx, video.title, "running")
-        step_task.processing(idx, video, 5, target_dir)
-        print(idx, video.title, "done")
+    pool = multiprocessing.Pool(processes=multiprocessing.cpu_count() / 2)
+    data = [(idx, video, 5, target_dir) for [idx, video] in enumerate(playlist.videos)]
 
-    
+    pool.starmap(step_task.processing, data)
