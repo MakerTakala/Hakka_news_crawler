@@ -22,7 +22,7 @@ if __name__ == "__main__":
         os.makedirs(target_dir + "/txt")
 
     playlist = pytube.Playlist(list_url)
-    pool = multiprocessing.Pool(processes=multiprocessing.cpu_count() / 2)
+    pool = multiprocessing.Pool(processes=multiprocessing.cpu_count() // 2)
     data = [(idx, video, 5, target_dir) for [idx, video] in enumerate(playlist.videos)]
 
     pool.starmap(step_task.processing, data)
