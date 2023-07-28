@@ -18,11 +18,11 @@ if __name__ == "__main__":
         os.makedirs(target_dir + "/mp4")
     if not os.path.isdir(target_dir + "/wav"):
         os.makedirs(target_dir + "/wav")
-    if not os.path.isdir(target_dir + "/txt"):
-        os.makedirs(target_dir + "/txt")
+    if not os.path.isdir(target_dir + "/csv"):
+        os.makedirs(target_dir + "/csv")
 
     playlist = pytube.Playlist(list_url)
-    pool = multiprocessing.Pool(processes=multiprocessing.cpu_count() // 2)
+    pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
     data = [(idx, video, 5, target_dir) for [idx, video] in enumerate(playlist.videos)]
 
-    pool.starmap(step_task.processing, data[0:500])
+    pool.starmap(step_task.processing, data)

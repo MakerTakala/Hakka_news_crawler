@@ -59,7 +59,7 @@ def get_subtitle(in_path, out_path):
 
     if not util.is_space(text):
         end_time = round(total_frame / fps, 2)
-        subtitle.write(str(start_time) + "~" + str(end_time) + ":" + pre_text + "\n")
+        subtitle.write("\"" + str(start_time) + "-" + str(end_time) + "\",\"" + pre_text + "\"\n")
         duration_time.append([start_time, end_time])
 
     
@@ -72,7 +72,7 @@ def processing(idx, video, video_fps, target_dir):
     tmp_video = target_dir + "/mp4/tmp" + str(idx) + ".mp4"
     mp4_path = target_dir + "/mp4/" + str(idx) + ".mp4"
     wav_path = target_dir + "/wav/" + str(idx) + ".wav"
-    txt_path = target_dir + "/csv/" + str(idx) + ".csv"
+    csv_path = target_dir + "/csv/" + str(idx) + ".csv"
 
     if not os.path.isfile(mp4_path):
         try:
@@ -83,10 +83,12 @@ def processing(idx, video, video_fps, target_dir):
             mp4.write_videofile(filename=mp4_path, fps=video_fps, logger=None)
             os.remove(tmp_video)
 
-        except:
-            print(video.title, " cant downlaod")
+        except Exception as e:
+            if os.path.isfile(tmp_video):
+                os.remove(tmp_video)
+            print(idx, video.title, " cant downlaod")
             failfile = open(target_dir + "/fail.txt", "a")
-            failfile.write(video.title + " cant downlaod.\n")
+            failfile.write(str(idx) + video.title + " cant downlaod.\n" + str(e) + "\n\n")
             failfile.close()
             return
     
@@ -98,21 +100,21 @@ def processing(idx, video, video_fps, target_dir):
             sound = pydub.AudioSegment.from_wav(wav_path)
             sound = sound.set_channels(1)
             sound.export(wav_path, format="wav")
-        except:
-            print(video.title, " cant convert")
+        except Exception as e:
+            print(idx, video.title, " cant convert")
             failfile = open(target_dir + "/fail.txt", "a")
-            failfile.write(video.title + " cant convert.\n")
+            failfile.write(str(idx) + video.title + " cant convert.\n" + str(e) + "\n\n")
             failfile.close()
             return 
 
     
-    if not os.path.isfile(txt_path):
+    if not os.path.isfile(csv_path):
         try:
-            get_subtitle(mp4_path, txt_path)
-        except:
-            print(video.title, " cant get subtitle")
+            get_subtitle(mp4_path, csv_path)
+        except Exception as e:
+            print(idx, video.title, " cant get subtitle")
             failfile = open(target_dir + "/fail.txt", "a")
-            failfile.write(video.title + "  get subtitle.\n")
+            failfile.write(str(idx) + video.title + " cant get subtitle.\n" + str(e) + "\n\n") 
             failfile.close()
             return
         

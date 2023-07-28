@@ -5,7 +5,7 @@
 
 /all_data/wav/*
 /all_data/mp4/*
-/all_data/txt/*
+/all_data/csv/*
 /all_data/*.zip
 
 /testimage/*
