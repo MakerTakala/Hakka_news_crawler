@@ -23,8 +23,6 @@ def get_subtitle(in_path, out_path):
     duration_time = []
     start_time = 0
     end_time = 0
-    kernel2 = cv2.getStructuringElement(cv2.MORPH_RECT, (2, 2))
-    kernel3 = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
 
     for i in range(total_frame):
         success, img = video.read()
