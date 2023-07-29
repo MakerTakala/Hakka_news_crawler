@@ -11,7 +11,7 @@ if __name__ == "__main__":
     
 
     list_url = "https://www.youtube.com/playlist?list=PL96kIIcXJpMvasYY-YOVv4ZgmqaDd9e5x"
-    target_dir = "/Users/takala/Documents/GitHub/Hakka_news_crawler/all_data"
+    target_dir = "/Users/takala/Documents/GitHub/Hakka_news_crawler/test_data"
 
 
     if not os.path.isdir(target_dir + "/mp4"):
@@ -25,4 +25,4 @@ if __name__ == "__main__":
     pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
     data = [(idx, video, 5, target_dir) for [idx, video] in enumerate(playlist.videos)]
 
-    pool.starmap(step_task.processing, data)
+    pool.starmap(step_task.processing, data[:1])

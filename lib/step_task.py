@@ -4,6 +4,7 @@ import os
 import cv2
 import PIL
 import pydub
+import numpy as np
 import pytesseract
 import moviepy.editor as mpeditor
 import moviepy.video.fx.all as mpfx
@@ -29,22 +30,22 @@ def get_subtitle(in_path, out_path):
         success, img = video.read()
         if not success:
             break
-        
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY);
-        ret, img = cv2.threshold(img, 240, 255, cv2.THRESH_BINARY)
-        img = cv2.bitwise_not(img)  
 
-     
-        img = cv2.erode(img, kernel3)
-        img = cv2.dilate(img, kernel2)
+        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+        mask = cv2.inRange(hsv, (0, 0, 0), (360, 8, 255))
+        mask = cv2.bitwise_not(mask)
+        img[np.where(mask)] = 0
+        img = cv2.bitwise_not(img)
 
-        # cv2.imshow("video", img)
-        # cv2.waitKey(0)
-        # cv2.destroyAllWindows()
+        img[np.where((img >= [128, 128, 128]).all(axis=2))] = [255, 255, 255]
 
-        img = PIL.Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+        # do threshold use otsu's algorithm
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        ret, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
+        img = cv2.bitwise_not(thresh)
+
+        # run tesseract, returning
         text = pytesseract.image_to_string(img, lang='chi_tra', config="--psm 7")
-
         text = util.cleartext(text)
 
         if util.text_is_differ(text, pre_text):
