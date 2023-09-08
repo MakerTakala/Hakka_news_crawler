@@ -25,4 +25,4 @@ if __name__ == "__main__":
     pool = multiprocessing.Pool(processes=multiprocessing.cpu_count())
     data = [(idx, video, 5, target_dir) for [idx, video] in enumerate(playlist.videos)]
 
-    pool.starmap(step_task.processing, data[:1])
+    pool.starmap(step_task.processing, data[:500])
