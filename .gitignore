@@ -8,4 +8,7 @@
 /all_data/csv/*
 /all_data/*.zip
 
+/Hakka_ge30_slice
+/Hakka_ge30_fin
+
 /testimage/*
